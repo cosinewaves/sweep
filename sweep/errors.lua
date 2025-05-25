@@ -4,7 +4,7 @@
 local errors = {}
 
 local function format(sender: string, message: string)
-	return `[sweep.{sender:lower()}] {message}.`
+	return `[sweep.{sender}] {message}.`
 end
 
 function errors.new(sender: string, message: string, level: number): ()

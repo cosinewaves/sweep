@@ -11,7 +11,7 @@ function CreatePart(): Part
 end
 
 print("Creating parts")
-for i = 1, 10, 1 do
+for i = 1, 100, 1 do
   collector:Track(CreatePart())
 end
 print("Created parts")
