@@ -38,7 +38,7 @@ end
 
   @within sweeper
   @param task internalTypings.sweeperTask
-  @error "provided task doesn't exist, or isn't a valid type - see valid taskTypes in sweep/internalTypings.lua" This happens if the passed object doesn't pass the type assertion.
+  @error invalidTask -- This happens if the passed object doesn't pass the type assertion.
   @return sweeperTask internalTypings.sweeperTask
 ]=]
 function sweeper:Track(task: internalTypings.sweeperTask): internalTypings.sweeperTask
@@ -50,7 +50,7 @@ function sweeper:Track(task: internalTypings.sweeperTask): internalTypings.sweep
 	or (typeof(task) == "table" and typeof(task.Destroy) == "function")
 
 if not isValid then
-	errors.new(":Track()", "provided task doesn't exist, or isn't a valid type - see valid taskTypes in sweep/internalTypings.lua", 3)
+	errors.new(":Track()", "invalidTask", 3)
 end
 
 
