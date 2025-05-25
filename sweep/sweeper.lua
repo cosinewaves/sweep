@@ -45,7 +45,7 @@ end
 function sweeper:Track(task: internalTypings.sweeperTask): internalTypings.sweeperTask
 
   if not task or typeof(task) ~= internalTypings.sweeperTask then
-    errors.new(":Track()", "provided task doesn't exist, or isn't a valid type - see valid taskTypes in sweep/internalTypings.lua")
+    errors.new(":Track()", "provided task doesn't exist, or isn't a valid type - see valid taskTypes in sweep/internalTypings.lua", 3)
   end
 
   table.insert(self._bucket, task)
@@ -71,7 +71,7 @@ function sweeper:Wipe(): internalTypings.sweeper
         else
           errors.new(":Wipe()",
            "sweeper tried to cleanup an Instance, however the instance doesn't exist or isn't a descendant of the data model"
-         )
+         ,3)
           return self
   			end
   		elseif typeof(task) == "RBXScriptConnection" then
