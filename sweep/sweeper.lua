@@ -3,7 +3,9 @@
 local internalTypings = require(script.Parent.internalTypings)
 local errors = require(script.Parent.errors)
 
-local sweeper = {} -- TODO type sweeper module
+local sweeper = {} :: internalTypings.sweeper
+sweeper.__index = sweeper
+
 
 --[=[
   @class sweeper
