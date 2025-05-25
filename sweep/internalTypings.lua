@@ -1,33 +1,41 @@
-local ReplicatedStorage = game:GetService("ReplicatedStorage")
-local sweep = require(ReplicatedStorage.sweep)
+--!strict
+-- internalTypings.lua
 
--- Utility to create a test part
-function CreatePart(): Part
-	local new = Instance.new("Part")
-	new.Name = "SweeperPart"
-	new.Parent = workspace
-	return new
-end
+export type sweeper = {
+	-- Internal task storage
+	_bucket: { taggedTask },
 
-print("Creating parent and child sweepers")
-local parent = sweep.new()
-local child = sweep.new()
+	-- Adds a task to be cleaned up
+	Track: (self: sweeper, task: sweeperTask, tag: string?) -> sweeperTask,
 
--- Track the child in the parent
-parent:Track(child)
+	-- Removes a task (or tasks by tag)
+	Untrack: (self: sweeper, target: sweeperTask | string) -> (),
 
--- Add some parts to the child
-print("Adding parts to child sweeper")
-for i = 1, 5 do
-	child:Track(CreatePart())
-end
+	-- Wipes all tracked tasks, or those by tag
+	Wipe: (self: sweeper, tag: string?) -> sweeper,
 
-print("Adding parts to parent sweeper")
-for i = 1, 5 do
-	parent:Track(CreatePart())
-end
+	-- Fires when a task is tracked
+	OnTrack: (task: sweeperTask, tag: string?) -> (),
 
-print("Delaying 5 seconds before wiping parent (which should also wipe child)")
-task.delay(5, function()
-	parent:Wipe()
-end)
+	-- Fires when wipe is executed
+	OnWipe: () -> (),
+
+	-- Metatable
+	__index: any,
+}
+
+export type taggedTask = {
+	task: sweeperTask,
+	tag: string?,
+}
+
+export type sweeperTask =
+	Instance
+	| RBXScriptConnection
+	| () -> ...any
+	| {
+		Destroy: (self: any) -> nil,
+	}
+	| sweeper -- support nested sweepers
+
+return {}
