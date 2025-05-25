@@ -54,7 +54,7 @@ if not isValid then
 	errors.new(":Track()", "invalidTask", 3)
 end
 
-
+self.OnTrack()
   table.insert(self._bucket, task)
 	return task
 end
@@ -90,6 +90,7 @@ function sweeper:Wipe(): internalTypings.sweeper
   		end
   	end
   	table.clear(self._bucket)
+    self.OnWipe()
     return self
 end
 
