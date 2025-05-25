@@ -37,7 +37,7 @@ end
   ```
 
   @within sweeper
-  @param task internalTypings.sweeperTask
+  @param task sweeperTask
   @error invalidTask -- This happens if the passed object doesn't pass the type assertion.
   @return sweeperTask
 ]=]
@@ -67,7 +67,7 @@ end
 
   @within sweeper
   @error invalidInstance -- This happens when it tries to cleanup and instance which isn't inside 'game' or just doesn't exist.
-  @return sweeper 
+  @return sweeper
 ]=]
 function sweeper:Wipe(): internalTypings.sweeper
   for _, task in self._bucket do
