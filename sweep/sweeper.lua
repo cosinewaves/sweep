@@ -28,7 +28,7 @@ function sweeper.new(): internalTypings.sweeper
 end
 
 --[=[
-  Adds an object for sweeper to track. It can track parts, functions, RBXScriptConnections, and custom classes with a Destroy function
+  Adds an object for sweeper to track. It can track parts, functions, RBXScriptConnections, and custom classes with a Destroy function. Fires the `OnTrack` internal function aswell for life cycle support.
   ```lua
   local mySweeper = sweeper.new()
   mySweeper:Track(Instance.new("Part"))
@@ -60,7 +60,7 @@ self.OnTrack()
 end
 
 --[=[
-  Handles cleanup for every object inside the sweeper's bucket.
+  Handles cleanup for every object inside the sweeper's bucket. . Fires the `OnWipe` internal function aswell for life cycle support.
   ```lua
   local mySweeper = sweeper.new()
   mySweeper:Wipe()
