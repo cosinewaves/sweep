@@ -3,7 +3,7 @@
 local internalTypings = require(script.Parent.internalTypings)
 local errors = require(script.Parent.errors)
 
-local sweeper = {} -- type sweeper
+local sweeper = {} -- TODO type sweeper module
 
 --[=[
   @class sweeper
@@ -25,8 +25,22 @@ function sweeper.new(): internalTypings.sweeper
 	}, sweeper)
 end
 
-function sweeper:Track(object: internalTypings.sweeperTask): internalTypings.sweeperTask
+--[=[
+  Adds an object for sweeper to track. It can track parts, functions, RBXScriptConnections, and custom classes with a Destroy function
+  ```lua
+  local mySweeper = sweeper.new()
+  mySweeper:Track(Instance.new("Part"))
+  mySweeper:Track(function() print("My Function!") return nil end)
+  mySweeper:Track(game.Players.PlayerAdded:Connect())
+  ```
 
+  @param task internalTypings.sweeperTask
+  @return sweeperTask internalTypings.sweeperTask
+]=]
+function sweeper:Track(task: internalTypings.sweeperTask): internalTypings.sweeperTask
+  -- TODO add error handling here
+  table.insert(self._tasks, task)
+	return task
 end
 
 return sweeper
