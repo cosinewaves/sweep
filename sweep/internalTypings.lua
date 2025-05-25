@@ -18,6 +18,13 @@ export type sweeper = {
 
 	-- Wipes all tracked tasks
 	Wipe: (self: sweeper) -> sweeper,
+
+	-- Fires whenever a new task is added to the bucket
+	OnAdd: (task: sweeperTask) -> (),
+
+	-- Fires whenever the bucket is wiped
+	OnWipe: () -> (),
+
 }
 
 return {}
