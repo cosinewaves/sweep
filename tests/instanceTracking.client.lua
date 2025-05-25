@@ -5,14 +5,14 @@ local collector = sweep.new()
 print("Created new sweep class")
 
 function CreatePart(): Part
-  local new = Instance.new("Part")
-  new.Parent = workspace
-  return new
+	local new = Instance.new("Part")
+	new.Parent = workspace
+	return new
 end
 
 print("Creating parts")
 for i = 1, 100, 1 do
-  collector:Track(CreatePart())
+	collector:Track(CreatePart())
 end
 print("Created parts")
 
