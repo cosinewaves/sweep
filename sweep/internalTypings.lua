@@ -21,7 +21,10 @@ export type sweeper = {
 	OnWipe: () -> (),
 
 	-- Returns how many items are being Tracked
-	CountTracked: () -> number?,
+	CountTracked: (self: sweeper) -> number?,
+
+	-- Returns all tasks being tracked of that type
+	GetTasksByType: (self: sweeper, taskType: string) -> {sweeperTask}?,
 
 	-- Metatable
 	__index: any,

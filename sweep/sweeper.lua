@@ -158,4 +158,13 @@ function sweeper:CountTracked(): number?
   return #self._bucket or nil
 end
 
+function sweeper:GetTasksByType(taskType: string): {internalTypings.sweeperTask}?
+local t = {}
+if taskType:lower() == "rbxscriptconnection" then
+for i: number, sweeperTask: internalTypings.taggedTask in self._bucket do
+-- TODO this function
+end
+end
+end
+
 return sweeper
