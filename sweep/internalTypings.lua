@@ -1,7 +1,23 @@
 --!strict
-export type sweeperTask = Instance | RBXScriptConnection | () -> () | { Destroy: () -> () }
+-- internalTypings.lua
+
+export type sweeperTask =
+	Instance
+	| RBXScriptConnection
+	| () -> ...any
+	| {
+		Destroy: (self: any) -> nil
+	}
+
 export type sweeper = {
-	_tasks: { sweeperTask },
+	-- Stores all tasks currently tracked
+	_bucket: { sweeperTask },
+
+	-- Adds a task to be cleaned up
+	Track: (self: sweeper, task: sweeperTask) -> sweeperTask,
+
+	-- Wipes all tracked tasks
+	Wipe: (self: sweeper) -> sweeper,
 }
 
 return {}
