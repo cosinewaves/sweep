@@ -34,13 +34,17 @@ end
   mySweeper:Track(function() print("My Function!") return nil end)
   mySweeper:Track(game.Players.PlayerAdded:Connect())
   ```
-  
+
   @within sweeper
   @param task internalTypings.sweeperTask
   @return sweeperTask internalTypings.sweeperTask
 ]=]
 function sweeper:Track(task: internalTypings.sweeperTask): internalTypings.sweeperTask
-  -- TODO add error handling here
+
+  if not task or typeof(task) ~= internalTypings.sweeperTask then
+    errors.new(":Track()", "provided task doesn't exist, or isn't a valid type - see valid taskTypes in sweep/internalTypings.lua")
+  end
+
   table.insert(self._tasks, task)
 	return task
 end
