@@ -1,8 +1,7 @@
---!strict
 -- init.lua
 
-local sweeper = require(script.sweeper :: ModuleScript)
-local internalTypings = require(script.internalTypings :: ModuleScript)
+local sweeper = require(script.sweeper)
+local internalTypings = require(script.internalTypings)
 
 export type sweeperTask = internalTypings.sweeperTask
 export type sweeper = internalTypings.sweeper
