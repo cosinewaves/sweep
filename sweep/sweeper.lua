@@ -22,7 +22,7 @@ local sweeper = {} -- TODO type sweeper module
 ]=]
 function sweeper.new(): internalTypings.sweeper
   return setmetatable({
-		_tasks = {},
+		_bucket = {},
 	}, sweeper)
 end
 
@@ -45,10 +45,36 @@ function sweeper:Track(task: internalTypings.sweeperTask): internalTypings.sweep
     errors.new(":Track()", "provided task doesn't exist, or isn't a valid type - see valid taskTypes in sweep/internalTypings.lua")
   end
 
-  table.insert(self._tasks, task)
+  table.insert(self._bucket, task)
 	return task
 end
 
+--[=[
+  Handles cleanup for every object inside the sweeper's bucket.
+  ```lua
+  local mySweeper = sweeper.new()
+  mySweeper:Wipe()
+  ```
 
+  @within sweeper
+  @return sweeper internalTypings.sweeper
+]=]
+function sweeper:Wipe(): internalTypings.sweeper
+  for _, task in self._bucket do
+  		if typeof(task) == "Instance" then
+  			if task:IsDescendantOf(game) then
+  				task:Destroy()
+  			end
+  		elseif typeof(task) == "RBXScriptConnection" then
+  			task:Disconnect()
+  		elseif typeof(task) == "function" then
+  			task()
+  		elseif typeof(task) == "table" and typeof(task.Destroy) == "function" then
+  			task:Destroy()
+  		end
+  	end
+  	table.clear(self._bucket)
+    return self
+end
 
 return sweeper
