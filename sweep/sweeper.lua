@@ -19,7 +19,7 @@ sweeper.__index = sweeper
   ```
 
   @within sweeper
-  @return sweeper internalTypings.sweeper
+  @return sweeper
 ]=]
 function sweeper.new(): internalTypings.sweeper
   return setmetatable({
@@ -39,7 +39,7 @@ end
   @within sweeper
   @param task internalTypings.sweeperTask
   @error invalidTask -- This happens if the passed object doesn't pass the type assertion.
-  @return sweeperTask internalTypings.sweeperTask
+  @return sweeperTask
 ]=]
 function sweeper:Track(task: internalTypings.sweeperTask): internalTypings.sweeperTask
 
@@ -67,7 +67,7 @@ end
 
   @within sweeper
   @error invalidInstance -- This happens when it tries to cleanup and instance which isn't inside 'game' or just doesn't exist.
-  @return sweeper internalTypings.sweeper
+  @return sweeper 
 ]=]
 function sweeper:Wipe(): internalTypings.sweeper
   for _, task in self._bucket do
