@@ -148,4 +148,14 @@ function sweeper:Wipe(tag: string?): internalTypings.sweeper
   return self
 end
 
+--[=[
+  Returns how many items are currently being tracked by the sweeper object.
+
+  @within sweeper
+  @return number?
+]=]
+function sweeper:CountTracked(): number?
+  return #self._bucket or nil
+end
+
 return sweeper

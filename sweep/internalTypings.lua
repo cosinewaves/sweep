@@ -20,6 +20,9 @@ export type sweeper = {
 	-- Fires when wipe is executed
 	OnWipe: () -> (),
 
+	-- Returns how many items are being Tracked
+	CountTracked: () -> number?,
+
 	-- Metatable
 	__index: any,
 }
@@ -36,6 +39,6 @@ export type sweeperTask =
 	| {
 		Destroy: (self: any) -> nil,
 	}
-	| sweeper -- support nested sweepers
+	| sweeper
 
 return {}
