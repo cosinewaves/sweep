@@ -6,7 +6,6 @@ local errors = require(script.Parent.errors)
 local sweeper = {} :: internalTypings.sweeper
 sweeper.__index = sweeper
 
-
 --[=[
   @class sweeper
 
