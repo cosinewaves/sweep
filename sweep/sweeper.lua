@@ -17,6 +17,7 @@ local sweeper = {} -- TODO type sweeper module
   local mySweeper = sweeper.new()
   ```
 
+  @within sweeper
   @return sweeper internalTypings.sweeper
 ]=]
 function sweeper.new(): internalTypings.sweeper
@@ -33,7 +34,8 @@ end
   mySweeper:Track(function() print("My Function!") return nil end)
   mySweeper:Track(game.Players.PlayerAdded:Connect())
   ```
-
+  
+  @within sweeper
   @param task internalTypings.sweeperTask
   @return sweeperTask internalTypings.sweeperTask
 ]=]
@@ -42,5 +44,7 @@ function sweeper:Track(task: internalTypings.sweeperTask): internalTypings.sweep
   table.insert(self._tasks, task)
 	return task
 end
+
+
 
 return sweeper
