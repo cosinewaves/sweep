@@ -25,7 +25,7 @@ return setmetatable({
 _bucket = {},
 OnTrack = function() end,
 OnWipe = function() end,
-}, sweeper)
+} , sweeper)
 end
 
 --[=[
