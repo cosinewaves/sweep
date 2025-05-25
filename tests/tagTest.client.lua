@@ -37,4 +37,3 @@ task.delay(10, function()
 	print("Wiping remaining tasks (ui)")
 	collector:Wipe()
 end)
-a
