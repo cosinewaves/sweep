@@ -66,7 +66,7 @@ end
   ```
 
   @within sweeper
-  @error "sweeper tried to cleanup an Instance, however the instance doesn't exist or isn't a descendant of the data model" This happens when it tries to cleanup and instance which isn't inside 'game' or just doesn't exist.
+  @error invalidInstance -- This happens when it tries to cleanup and instance which isn't inside 'game' or just doesn't exist.
   @return sweeper internalTypings.sweeper
 ]=]
 function sweeper:Wipe(): internalTypings.sweeper
