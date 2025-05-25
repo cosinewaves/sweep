@@ -44,9 +44,16 @@ end
 ]=]
 function sweeper:Track(task: internalTypings.sweeperTask): internalTypings.sweeperTask
 
-  if not task or typeof(task) ~= internalTypings.sweeperTask then
-    errors.new(":Track()", "provided task doesn't exist, or isn't a valid type - see valid taskTypes in sweep/internalTypings.lua", 3)
-  end
+  local isValid =
+	typeof(task) == "Instance"
+	or typeof(task) == "RBXScriptConnection"
+	or typeof(task) == "function"
+	or (typeof(task) == "table" and typeof(task.Destroy) == "function")
+
+if not isValid then
+	errors.new(":Track()", "provided task doesn't exist, or isn't a valid type - see valid taskTypes in sweep/internalTypings.lua", 3)
+end
+
 
   table.insert(self._bucket, task)
 	return task
