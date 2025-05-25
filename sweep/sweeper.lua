@@ -36,6 +36,7 @@ end
   mySweeper:Track(game.Players.PlayerAdded:Connect())
   ```
 
+  @method Track
   @within sweeper
   @param task sweeperTask
   @error invalidTask -- This happens if the passed object doesn't pass the type assertion.
