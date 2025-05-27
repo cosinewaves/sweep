@@ -2,12 +2,10 @@
   "name": "sweep",
   "tree": {
     "$className": "DataModel",
-
     "ReplicatedStorage": {
       "sweep": {
         "$path": "sweep/"
       }
     }
-
   }
 }
