@@ -22,11 +22,11 @@ sweeper.__index = sweeper
   @return sweeper
 ]=]
 function sweeper.new(): internalTypings.sweeper
-  return setmetatable({
-    _bucket = {},
-    OnTrack = function(_) end,
-    OnWipe = function() end,
-  }, sweeper)
+  local self = {} :: internalTypings.sweeper
+  self._bucket = {}
+  self.OnTrack = function() end
+  self.OnWipe = function() end
+  return setmetatable(self, sweeper)
 end
 
 --[=[
