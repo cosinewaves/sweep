@@ -120,7 +120,7 @@ function sweeper:Wipe(tag: string?): internalTypings.sweeper
       else
         errors.new(":Wipe()",
          "sweeper tried to cleanup an Instance, however the instance doesn't exist or isn't a descendant of the data model"
-       ,3)
+        ,3)
         return self
       end
     elseif typeof(task) == "RBXScriptConnection" then
@@ -159,12 +159,14 @@ function sweeper:CountTracked(): number?
 end
 
 function sweeper:GetTasksByType(taskType: string): {internalTypings.sweeperTask}?
-local t = {}
-if taskType:lower() == "rbxscriptconnection" then
-for i: number, sweeperTask: internalTypings.taggedTask in self._bucket do
--- TODO this function
-end
-end
+  local _t = {}
+  if taskType:lower() == "rbxscriptconnection" then
+    for i: number, sweeperTask: internalTypings.taggedTask in self._bucket do
+    -- TODO this function
+      return nil
+    end
+  end
+  return nil
 end
 
 return sweeper
