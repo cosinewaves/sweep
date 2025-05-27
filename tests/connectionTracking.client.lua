@@ -12,7 +12,7 @@ collector:Track(RunService.Heartbeat:Connect(function()
 	print("Connection is alive! (Heartbeat)")
 end))
 
-task.delay(5)
+task.wait(5)
 print("Wiping")
 collector:Wipe()
 print("Wiped")
